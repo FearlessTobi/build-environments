@@ -11,5 +11,8 @@ RUN cd /tmp/pkgs && python2 install_package.py \
     qtdeclarative5-dev 5.9.3-0ubuntu1 bionic         \
     qtmultimedia5-dev 5.9.3-0ubuntu3 bionic          \
     libicu57 57.1-6ubuntu0.2 bionic                  \
-    cmake 3.10.2-1ubuntu2 bionic
+    cmake 3.10.2-1ubuntu2 bionic                     \
+    libavcodec-dev 7:3.4.4-0ubuntu0.18.04.1 bionic   \
+    libavformat-dev 7:3.4.4-0ubuntu0.18.04.1 bionic  \
+    libswscale-dev 7:3.4.4-0ubuntu0.18.04.1 bionic
 RUN rm -rf /tmp/pkgs

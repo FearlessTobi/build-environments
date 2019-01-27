@@ -20,7 +20,7 @@ def get_url(pkg, distro):
     build_ref = launchpad.archives.getByReference(reference='ubuntu').getPublishedBinaries(
         binary_name=pkg[0], distro_arch_series='https://api.launchpad.net/devel/ubuntu/' + distro + '/amd64', version=pkg[1], exact_match=True, order_by_date=True).entries[0]
     build_link = build_ref['build_link']
-    deb_name = '{}_{}_{}.deb'.format(pkg[0], pkg[1], 'amd64' if build_ref['architecture_specific'] else 'all')
+    deb_name = '{}_{}_{}.deb'.format(pkg[0], pkg[1].split(':', 1)[-1], 'amd64' if build_ref['architecture_specific'] else 'all')
     deb_link = build_link + '/+files/' + deb_name
     return [deb_link, deb_name]
 
@@ -28,7 +28,7 @@ def get_url(pkg, distro):
 def list_dependencies(deb_file):
     t = subprocess.check_output(
         ['bash', '-c', '(dpkg -I {} | grep -oP "^ Depends\: \K.*$") || true'.format(deb_file)])
-    deps = [i.strip() for i in t.split(',')]
+    deps = [i.split('|')[0].strip() for i in t.split(',')]
     equals_re = re.compile(r'^(.*) \(= (.*)\)$')
     return [equals_re.sub(r'\1=\2', i).split('=') for i in filter(equals_re.match, deps)]
 
