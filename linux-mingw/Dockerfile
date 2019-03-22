@@ -1,6 +1,6 @@
 FROM ubuntu:18.04
-MAINTAINER citra
-RUN useradd -m -s /bin/bash citra && mkdir -p /tmp/pkgs
+MAINTAINER yuzu
+RUN useradd -m -s /bin/bash yuzu && mkdir -p /tmp/pkgs
 RUN apt-get update && apt-get install -y gpg wget git python3-pip ccache p7zip-full g++-mingw-w64-x86-64 gcc-mingw-w64-x86-64 mingw-w64-tools cmake ninja-build
 # workaround broken headers in Ubuntu MinGW package
 COPY errno.h /usr/x86_64-w64-mingw32/include/

@@ -1,4 +1,4 @@
 # build-environments
-Dockerfile entries used for building Citra binaries.
+Dockerfile entries used for building yuzu binaries.
 
-https://hub.docker.com/r/citraemu/build-environments/
+https://hub.docker.com/r/yuzuemu/yuzu-build-environments/
